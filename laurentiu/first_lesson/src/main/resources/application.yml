@@ -1,0 +1,5 @@
+spring:
+  r2dbc:
+    url: r2dbc:mysql:http://localhost:3306/reactive_db
+    username: root
+    password: jagaban##
