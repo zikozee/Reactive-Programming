@@ -6,9 +6,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.BodyInserter;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
+
+import java.net.URI;
 
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
@@ -36,5 +40,14 @@ public class ProductHandler {
         return ok()
                 .contentType(MediaType.TEXT_EVENT_STREAM)
                 .body(productService.getProducts(), Product.class);
+    }
+
+    public  Mono<ServerResponse> create(ServerRequest serverRequest){
+       return serverRequest
+               .bodyToMono(Product.class)
+               .flatMap(this.productService::createProduct)
+               .flatMap(p -> ServerResponse.created(URI.create("/products/" + p.getName()))  // URI os for location in HEADERS
+                       .contentType(MediaType.APPLICATION_JSON)
+                       .body(BodyInserters.fromValue(p)));
     }
 }

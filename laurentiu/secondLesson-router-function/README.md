@@ -6,3 +6,6 @@
 see commented out code
 
 - see RouterConfig
+
+###
+- http://localhost:8080/products
