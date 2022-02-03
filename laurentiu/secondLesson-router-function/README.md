@@ -9,3 +9,4 @@ see commented out code
 
 ###
 - http://localhost:8080/products
+- http://localhost:8080/products   {"name": ziko}
