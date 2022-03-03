@@ -10,6 +10,9 @@ import reactor.core.publisher.Flux;
 
 public class Lec01FluxCreate {
 
+
+    // we handle the looping or generation ourselves
+    // .create only serves what we emit
     public static void main(String[] args) {
 
 

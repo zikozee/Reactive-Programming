@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 /**
  * @author : Ezekiel Eromosei
@@ -16,7 +17,7 @@ public class FileService {
 
     private FileService(){}
 
-    private static final Path PATH = Paths.get("C:/Users/zikoz/Desktop/JAVA/REACTIVE_PROGRAMMING/reactor/src/main/resources/assignment/sec01");
+    private static final Path PATH = Paths.get("C:/Users/zikoz/Desktop/JAVA/REACTIVE_PROGRAMMING/reactor/src/main/resources/assignment/sec03");
 
     public static Mono<String> read(String filename){
         return Mono.fromSupplier(() -> readFile(filename));
@@ -42,7 +43,7 @@ public class FileService {
 
     private static void writeFile(String filename, String content){
         try {
-            Files.writeString(PATH.resolve(filename), content);
+            Files.writeString(PATH.resolve(filename), content, StandardOpenOption.APPEND);
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }

@@ -10,6 +10,7 @@ import reactor.core.publisher.Flux;
 
 public class Lec04FluxCreateIssueFix {
 
+    // only one instance of flux sink
     public static void main(String[] args) {
 
         Flux.create(fluxSink -> {
