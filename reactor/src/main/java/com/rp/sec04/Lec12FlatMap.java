@@ -13,6 +13,8 @@ public class Lec12FlatMap {
 
     // flat map flattens <Flux<Flux<Object>>>   <Flux<Mono<Object>>>
     // into  Flux<Object>  ::::: asynchronously
+    // if you have dataset being return as a flux<Publisher> or Mono<Publisher>  e.g <Flux<Flux<Object>>> above
+    // this is where flatmap shines as it will auto-subscribe and then reatun as flux<Object> or Mono<Object>
 
 
     // concatMap is ordered, flat map is not
