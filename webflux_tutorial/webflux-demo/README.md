@@ -20,3 +20,13 @@
   - in spring 3.X the collectList() was removed
   - found in **AbstractJackson2Encoder**
 ![img.png](img.png)
+
+
+## Reading request ing a non-blocking way
+- can receive our payload with (@RequestBody Data data)
+- or receive it in a non-blocking waty (@RequestBody Mono<RequestBody> Data data)
+
+
+## ALWAYS CHECK THE REQUEST AND RESPONSE
+- Function<? super T, ? extends Mono<? extends R>> transformer
+  - means takes in a type T and will return anything that extends Mono<R> or Mono<R>
