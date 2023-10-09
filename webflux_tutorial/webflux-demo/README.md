@@ -1,4 +1,10 @@
 # WEBFLUX DEMO
+
+## Flow
+ - Accept the request (synchronous or asynchronously) ->> do the processing -->> return a publisher (Mono/Flux)
+ - Do not block/subscribe as the backend is **the publisher** while the clients are **the subscriber**
+
+## emitting data when still processing
 - by adding the below (produces = MediaType.TEXT_EVENT_STREAM_VALUE) to the controller, the publisher can event data as they are produced
 ```java
 
@@ -6,7 +12,7 @@
 
 ```
 
-# when subscriber cancels
+## when subscriber cancels
 - in the traditional mvc: we see that even when the user cancels the process **still continues to the end**
   - as the server received no notification
 - HOWEVER ,in reactive programming, when the subscriber cancels it halts immediately
@@ -36,3 +42,6 @@
 - we could throw manually just emit the error signal (see ReactiveMathValidationController endpoint 2)
 - **handle** can help us achieve this
 - we could handle exception using @RestControllerAdvice
+
+# returning no body with ResponseEntity
+- ResponseEntity.badRequest().build()

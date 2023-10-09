@@ -5,6 +5,7 @@ import com.ziko.webfluxdemo.exception.InputValidationException;
 import com.ziko.webfluxdemo.service.ReactiveMathService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,13 +32,24 @@ public class ReactiveMathValidationController {
     public Mono<Response> monoError(@PathVariable(value = "input") int input){
         return Mono.fromSupplier(() -> input)
                 .handle((integer, sink) -> {
-                    if(input >= 10 && integer <= 20)
+                    if(integer >= 10 && integer <= 20)
                         sink.next(integer);
                     else
                         sink.error(new InputValidationException(integer)); // if you intend to throw error, just emit the error signal this way rather than endpoint 1 above
                 })
                 .cast(Integer.class)
                 .flatMap(this.reactiveMathService::findSquare);
+    }
+
+
+    @GetMapping("square/{input}/assignment")
+    public Mono<ResponseEntity<Response>> assignment(@PathVariable(value = "input") int input){
+
+        return Mono.fromSupplier(() -> input)
+                .filter(i -> i >= 10 && i <= 20)
+                .flatMap(this.reactiveMathService::findSquare)
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.badRequest().build()); // when we want no response/body
     }
 
 }
