@@ -24,9 +24,15 @@
 
 ## Reading request ing a non-blocking way
 - can receive our payload with (@RequestBody Data data)
-- or receive it in a non-blocking waty (@RequestBody Mono<RequestBody> Data data)
+- or receive it in a non-blocking way (@RequestBody Mono<RequestBody> Data data)
 
 
 ## ALWAYS CHECK THE REQUEST AND RESPONSE
 - Function<? super T, ? extends Mono<? extends R>> transformer
   - means takes in a type T and will return anything that extends Mono<R> or Mono<R>
+
+
+## Throwing and Handling Exception
+- we could throw manually just emit the error signal (see ReactiveMathValidationController endpoint 2)
+- **handle** can help us achieve this
+- we could handle exception using @RestControllerAdvice
