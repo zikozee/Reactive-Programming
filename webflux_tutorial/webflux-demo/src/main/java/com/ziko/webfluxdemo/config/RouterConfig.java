@@ -5,10 +5,7 @@ import com.ziko.webfluxdemo.exception.InputValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.reactive.function.server.RouterFunction;
-import org.springframework.web.reactive.function.server.RouterFunctions;
-import org.springframework.web.reactive.function.server.ServerRequest;
-import org.springframework.web.reactive.function.server.ServerResponse;
+import org.springframework.web.reactive.function.server.*;
 import reactor.core.publisher.Mono;
 
 import java.util.function.BiFunction;
@@ -34,7 +31,9 @@ public class RouterConfig {
 
     private RouterFunction<ServerResponse> router2(){
         return RouterFunctions.route()
-                .GET("square/{input}", handler::squareHandler)
+                // this would only match 10 -20, i.e start with 1 and accept another digit
+                .GET("square/{input}", RequestPredicates.path("*/1?").or(RequestPredicates.path("*/20")), handler::squareHandler)
+                .GET("square/{input}", req -> ServerResponse.badRequest().bodyValue("only 10-19 allowed"))
                 .GET("table/{input}", handler::multiplicationTableHandler)
                 .GET("table/{input}/stream", handler::multiplicationStreamHandler)
                 .POST("multiply", handler::multiplyHandler)
