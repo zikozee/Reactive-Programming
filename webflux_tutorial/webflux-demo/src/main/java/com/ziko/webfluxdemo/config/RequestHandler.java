@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ziko.webfluxdemo.dto.MultiplyRequestDto;
 import com.ziko.webfluxdemo.dto.Response;
+import com.ziko.webfluxdemo.exception.InputValidationException;
 import com.ziko.webfluxdemo.service.ReactiveMathService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -63,6 +64,19 @@ public class RequestHandler {
         return ServerResponse.ok()
                 .body(multiplicationTable, Response.class);
     }
+
+
+    //FOR ERROR HANDLING SCENARIO
+    public Mono<ServerResponse> squareHandlerValidation(ServerRequest serverRequest){
+        int input = Integer.parseInt(serverRequest.pathVariable("input"));
+        if(input <10 || input > 20){
+            return Mono.error(new InputValidationException(input));
+        }
+
+        Mono<Response> square = this.reactiveMathService.findSquare(input); // builds the pipeline
+        return ServerResponse.ok().body(square, Response.class);
+    }
+
 
 
 }

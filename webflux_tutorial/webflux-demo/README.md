@@ -53,3 +53,10 @@
 - use **ServerResponse.ok.body(T publisher, Class response)** -> pass in publisher and Type 
 - in the request Handler, it should always return, **Mono<ServerResponse>**
   - even if the response is of Type flux, the ServerResponse is an object that contains the actual Response inside of it
+
+# Reactive Exception Handling todo
+- I use Hibernate ValidationFactory or the Custom Validation Class,
+- Use an ApiBaseResponse
+- call the CustomValidator class to receive the request input and/or body in the RequestHandler
+- check the exception Type
+- build the ApiBaseResponse and return as ServerResponse.badRequest.bodyValue(apiBaseResponse);
