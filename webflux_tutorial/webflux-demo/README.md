@@ -45,3 +45,11 @@
 
 # returning no body with ResponseEntity
 - ResponseEntity.badRequest().build()
+
+
+# ServerResponse
+- this is equivalent to ResponseEntity
+- use **ServerResponse.ok.bodyValue** for objects like String, BigDecimal, Custom Class
+- use **ServerResponse.ok.body(T publisher, Class response)** -> pass in publisher and Type 
+- in the request Handler, it should always return, **Mono<ServerResponse>**
+  - even if the response is of Type flux, the ServerResponse is an object that contains the actual Response inside of it
