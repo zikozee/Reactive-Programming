@@ -55,8 +55,14 @@
   - even if the response is of Type flux, the ServerResponse is an object that contains the actual Response inside of it
 
 # Reactive Exception Handling todo
-- I use Hibernate ValidationFactory or the Custom Validation Class,
+- use Hibernate ValidationFactory or the Custom Validation Class,
 - Use an ApiBaseResponse
 - call the CustomValidator class to receive the request input and/or body in the RequestHandler
 - check the exception Type
 - build the ApiBaseResponse and return as ServerResponse.badRequest.bodyValue(apiBaseResponse);
+
+
+# Multiple Router
+- we can have multiple router handle different set of endpoints-
+- further more we could use RouterFunctions.route().path("start-path-to-match", routerX)
+  - where routerX then contains uri to match :: // see RouterConfig class

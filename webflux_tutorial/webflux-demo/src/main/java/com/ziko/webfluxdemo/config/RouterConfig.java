@@ -20,6 +20,31 @@ public class RouterConfig {
     // matches the reactive-math-Controller
     private final RequestHandler handler;
 
+    //router2
+    @Bean
+    public RouterFunction<ServerResponse> pathRouter(){
+        return RouterFunctions.route()
+                .path("router1", this::router2)
+                // this will check if the router begins with router1, and the maps looks for the
+                // uri in the router
+                // example http://localhost:8080/router1/square/8
+                // it sees that router1 is present then it checks which uri matches **square/8**
+                .build();
+    }
+
+    private RouterFunction<ServerResponse> router2(){
+        return RouterFunctions.route()
+                .GET("square/{input}", handler::squareHandler)
+                .GET("table/{input}", handler::multiplicationTableHandler)
+                .GET("table/{input}/stream", handler::multiplicationStreamHandler)
+                .POST("multiply", handler::multiplyHandler)
+                .GET("square-validation/{input}", handler::squareHandlerValidation)
+                .onError(InputValidationException.class, exceptionHandler())
+                .build();
+    }
+
+
+//router1
     @Bean
     public RouterFunction<ServerResponse> serverResponseRouterFunction(){
         return RouterFunctions.route()
