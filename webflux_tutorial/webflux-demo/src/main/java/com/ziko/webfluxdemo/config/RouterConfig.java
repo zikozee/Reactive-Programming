@@ -52,7 +52,8 @@ public class RouterConfig {
                 .GET("router/table/{input}/stream", handler::multiplicationStreamHandler)
                 .POST("router/multiply", handler::multiplyHandler)
                 .GET("router/square-validation/{input}", handler::squareHandlerValidation)
-                .onError(InputValidationException.class, exceptionHandler())
+//                .onError(InputValidationException.class, exceptionHandler())
+                .onError(Throwable.class, exceptionHandler())
                 .build();
     }
 

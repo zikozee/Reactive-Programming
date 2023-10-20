@@ -71,3 +71,20 @@
 - the is to match the kind of request allowed
 - e.g 	Builder POST(String pattern, RequestPredicate predicate, HandlerFunction<ServerResponse> handlerFunction);
 - do RequestPredicate.     to see all options that can be used headers, content-type, path,  httpMethods etc
+
+
+# Alternative to block in Test
+## Using webflux testing library
+- Step Verifier
+  - StepVerifier.create(...)
+  - Next
+    - expectNext(...)
+    - expectNextCount(...)
+    - thenConsumeWhile(...)
+  - Verify
+    - verifyComplete()
+    - verify(Duration)
+    - verifyError()
+  - StepVerifierOptions
+    - Context
+    - Scenario name
