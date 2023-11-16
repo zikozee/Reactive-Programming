@@ -1,0 +1,14 @@
+server:
+  port:  8092
+
+spring:
+  r2dbc:
+
+  # postgres
+#    url: r2dbc:postgresql://localhost:5432/userdb
+#    username: user
+#    password: pass
+    # h2
+    url: r2dbc:h2:mem:///userdb;DB_CLOSE_DELAY=-1
+    username:
+    password:
