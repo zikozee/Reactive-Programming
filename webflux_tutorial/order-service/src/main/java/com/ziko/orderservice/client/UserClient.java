@@ -2,9 +2,11 @@ package com.ziko.orderservice.client;
 
 import com.ziko.orderservice.dto.TransactionRequestDto;
 import com.ziko.orderservice.dto.TransactionResponseDto;
+import com.ziko.orderservice.dto.UserDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -32,5 +34,14 @@ public class UserClient {
                 .bodyValue(transactionRequestDto)
                 .retrieve()
                 .bodyToMono(TransactionResponseDto.class);
+    }
+
+    public Flux<UserDto> fetchAllUsers(){
+        return this.webClient
+                .get()
+                .uri("user/all")
+//                .body(transactionRequestDtoMono, TransactionRequestDto.class)
+                .retrieve()
+                .bodyToFlux(UserDto.class);
     }
 }

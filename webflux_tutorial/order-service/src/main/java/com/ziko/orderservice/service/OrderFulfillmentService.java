@@ -11,6 +11,7 @@ import com.ziko.orderservice.util.EntityDtoUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
 import reactor.util.retry.RetrySpec;
@@ -48,6 +49,7 @@ public class OrderFulfillmentService {
 
     }
 
+
     private Mono<RequestContext> productRequestResponse(RequestContext rc){
         return this.productClient.getProductById(rc.getPurchaseOrderRequestDto().productId())
                 .doOnNext(rc::setProductDto)
@@ -62,6 +64,7 @@ public class OrderFulfillmentService {
                 .doOnNext(rc::setTransactionResponseDto)
                 .thenReturn(rc);
     }
+
 
 
 }
