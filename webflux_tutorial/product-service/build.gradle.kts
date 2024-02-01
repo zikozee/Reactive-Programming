@@ -31,7 +31,7 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("io.projectreactor:reactor-test")
-//	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.10.0")
+	testImplementation("de.flapdoodle.embed:de.flapdoodle.embed.mongo.spring30x:4.10.0")
 }
 
 tasks.withType<Test> {

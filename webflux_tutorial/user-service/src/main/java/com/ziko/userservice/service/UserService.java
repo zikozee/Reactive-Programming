@@ -5,6 +5,7 @@ import com.ziko.userservice.entity.User;
 import com.ziko.userservice.repository.UserRepository;
 import com.ziko.userservice.util.EntityDtoUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -14,6 +15,7 @@ import reactor.core.publisher.Mono;
  * @code @created : 13 Nov, 2023
  */
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -32,6 +34,7 @@ public class UserService {
     public Mono<UserDto> createUser(Mono<UserDto> userDtoMono){
         return userDtoMono
                 .flatMap(userDto -> {
+                    log.info("USERDTO: {}\n{}", userDto, userDto.toString());
                     User entity = EntityDtoUtil.toEntity(userDto);
                     return this.userRepository.save(entity);
                 }).map(EntityDtoUtil::toDto);

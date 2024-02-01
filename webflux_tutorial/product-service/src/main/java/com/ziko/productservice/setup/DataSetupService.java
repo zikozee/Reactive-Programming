@@ -21,7 +21,7 @@ public class DataSetupService implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        ProductDto p1 = new ProductDto("4k-tv", 1000);
+        ProductDto p1 = new ProductDto("4k-tv", 2000);
         ProductDto p2 = new ProductDto("slr-camera", 750);
         ProductDto p3 = new ProductDto("iPhone", 800);
         ProductDto p4 = new ProductDto("headphone", 100);

@@ -11,6 +11,7 @@ import reactor.core.publisher.Mono;
 
 import java.lang.reflect.Type;
 import java.util.Optional;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @author : Ezekiel Eromosei
@@ -28,6 +29,7 @@ public class RequestHandler {
     }
 
     public Mono<ServerResponse> getByIdHandler(ServerRequest serverRequest){
+        simulateRandomException();
         String id = serverRequest.pathVariable("id");
         return this.service.getProductById(id)
                 .flatMap(productDto -> ServerResponse.ok().bodyValue(productDto))
@@ -57,5 +59,10 @@ public class RequestHandler {
         Optional<String> min = serverRequest.queryParam("min");
         Optional<String> max = serverRequest.queryParam("max");
         return ServerResponse.ok().body(this.service.priceRange(min.orElse(null), max.orElse(null)), new ParameterizedTypeReference<>() {});
+    }
+
+    private void simulateRandomException(){
+        int nextInt = ThreadLocalRandom.current().nextInt(1, 10);
+        if(nextInt > 5) throw new RuntimeException("Something is wrong");
     }
 }
