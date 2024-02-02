@@ -30,3 +30,13 @@ onComplete -  Runnable# Reactive-Programming
   - publish.autoConnect(0): rela hot publisher -  no subscriber required (not ideal)
   - cache(...) - cache emitted item for late subscribers. 
     - say we emit late stock price every 5 minutes and a subscriber join in the 4th minute, we can show the cached data
+
+
+# Schedulers
+- boundedElastic: Network/ time-consuming calls
+- parallel: CPU intensive tasks
+- A single: Dedicated thread for one-off tasks
+- immediate: Current thread
+## Operators for Scheduling
+- subscribeOn: for upstream
+- publishOn: for downstream

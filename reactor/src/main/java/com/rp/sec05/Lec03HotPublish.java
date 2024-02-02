@@ -18,7 +18,7 @@ public class Lec03HotPublish {
     // if the first subscriber has received all data, it starts emitting again
     public static void main(String[] args) {
 
-        // share = publish().refCount
+        // share = publish().refCount(1)
         Flux<String> movieStream = Flux.fromStream(() -> getMovie())
                 .delayElements(Duration.ofSeconds(2))
         .publish()
