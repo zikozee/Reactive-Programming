@@ -40,3 +40,15 @@ onComplete -  Runnable# Reactive-Programming
 ## Operators for Scheduling
 - subscribeOn: for upstream
 - publishOn: for downstream
+
+
+# Backpressure/ Overflow Strategy Sec07
+- This occurs when the subscriber requests infinite data from the publisher e.g 10000/s
+  - however, the the pipeline is slow probably due to some intensive workload
+  - now this results in the subscriber getting data at an very infinitesimal rate 1/s
+  - the reactor in context then keeps things ing memory until the subscriber is ready which can cause out of memory
+- Strategies:  a way to tell the producer its production rate is too high
+  - **buffer**: keep in memory
+  - **drop**: Once the queue is full, new items will be dropped
+  - **latest**: Once the queue is ful, keep 1 latest item as and when it arrives, drop old
+  - **error**: throw error to the downstream
