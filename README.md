@@ -52,3 +52,17 @@ onComplete -  Runnable# Reactive-Programming
   - **drop**: Once the queue is full, new items will be dropped
   - **latest**: Once the queue is ful, keep 1 latest item as and when it arrives, drop old
   - **error**: throw error to the downstream
+
+# Server sent Events (SSE)
+- see Product Service
+- where say the frontend(s) or a client(s) needs update at very short intervals
+- imagine so many clients calling at the same time, so many load on the backend
+- Instead, we have a one-way communication where the backend sends the events or message
+- Scenario
+  - see config SinkConfig
+    - whenever a new product is inserted/updated : the Sinks.Many<T> is called this.sink::tryEmitNext(T t)
+    - then the Flux productBroadcast returns the updated Sink  -->> on way connection
+    - QUESTION: how can this work for isw-requery when payment is updated
+      - ANSWER: we could do a replay().limit(100) to keep as much as 100
+    - QUESTION: how to avoid old data/duplicate
+      - ANSWER: we could use distinctUntil(/*using ref and timestamp*/)

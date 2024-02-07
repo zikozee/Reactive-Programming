@@ -8,6 +8,7 @@ import org.springframework.data.domain.Range;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.publisher.Sinks;
 
 /**
  * @author : Ezekiel Eromosei
@@ -18,6 +19,7 @@ import reactor.core.publisher.Mono;
 public class ProductService {
 
     private final ProductRepository repository;
+    private final Sinks.Many<ProductDto> sink;
 
     public Flux<ProductDto> getAll() {
         return this.repository.findAll().map(EntityDtoUtil::toProductDto);
@@ -29,7 +31,8 @@ public class ProductService {
 
     public Mono<ProductDto> insertProduct(Mono<ProductDto> productDtoMono) {
         return productDtoMono.flatMap(productDto -> repository.insert(EntityDtoUtil.toProduct(productDto)))  //or .save()
-                .map(EntityDtoUtil::toProductDto);
+                .map(EntityDtoUtil::toProductDto)
+                .doOnNext(this.sink::tryEmitNext);
     }
 
     public Mono<ProductDto> updateProduct(String id, Mono<ProductDto> productDtoMono) {
