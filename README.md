@@ -50,7 +50,7 @@ onComplete -  Runnable# Reactive-Programming
 - Strategies:  a way to tell the producer its production rate is too high
   - **buffer**: keep in memory
   - **drop**: Once the queue is full, new items will be dropped
-  - **latest**: Once the queue is ful, keep 1 latest item as and when it arrives, drop old
+  - **latest**: Once the queue is full, keep 1 latest item as and when it arrives, drop old
   - **error**: throw error to the downstream
 
 # Server sent Events (SSE)
@@ -66,3 +66,15 @@ onComplete -  Runnable# Reactive-Programming
       - ANSWER: we could do a replay().limit(100) to keep as much as 100
     - QUESTION: how to avoid old data/duplicate
       - ANSWER: we could use distinctUntil(/*using ref and timestamp*/)
+
+# Combining Publishers
+- startWith - starts from a predefined publisher before the other publisher(s) or publishers aligned sequentially in order you intend to produce from
+- concat - emitting one after the completion of the other
+- merge
+- zip - produces a tuple based on the number of inputs up to 8, greater, you can provide your own implementation
+  - if publisherA has 4, publisherB has 5, publisherC has 7 the tuple will take the highest common factor, i.e it will keep emitting until one publisher finish emitting
+      - [body,tires,engine]
+      - [body,tires,engine]
+      - [body,tires,engine]
+      - [body,tires,engine]
+- combineLatest

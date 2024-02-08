@@ -26,16 +26,16 @@ public class DefaultSubscriber implements Subscriber<Object> {
 
     @Override
     public void onNext(Object o) {
-        System.out.println(name + "Received : " + o);
+        System.out.println(name + " Received : " + o);
     }
 
     @Override
     public void onError(Throwable throwable) {
-        System.out.println(name + "ERROR : " + throwable.getMessage());
+        System.out.println(name + " ERROR : " + throwable.getMessage());
     }
 
     @Override
     public void onComplete() {
-        System.out.println(name + "Completed");
+        System.out.println(name + " Completed");
     }
 }
