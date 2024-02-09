@@ -78,3 +78,11 @@ onComplete -  Runnable# Reactive-Programming
       - [body,tires,engine]
       - [body,tires,engine]
 - combineLatest
+
+## R2DBC Entity Callback:  like hibernate PrePersist and @PreUpdate, : https://www.vinsguru.com/r2dbc-entity-callback/
+- BeforeConvert:	To modify an entity object before it is converted into OutboundRow object. Use this to modify Entity object before saving.
+- BeforeSave:	Entity object is converted into OutboundRow. We can still modify the domain object. Use this to modify OutboundRow before saving.
+- AfterSave:	Entity object is saved at this point. If it was a new entity, ID would have been updated. Use this to modify Entity object after saving.
+- AfterConvert:	Entity object is retrieved from DB. Use this to modify Entity object after reading from DB. 
+
+## Spring webflux file upload: https://www.vinsguru.com/spring-webflux-file-upload/
