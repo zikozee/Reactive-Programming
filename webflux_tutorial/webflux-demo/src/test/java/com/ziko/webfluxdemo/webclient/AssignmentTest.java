@@ -1,16 +1,11 @@
-package com.ziko.webfluxdemo;
+package com.ziko.webfluxdemo.webclient;
 
-import com.ziko.webfluxdemo.dto.MultiplyRequestDto;
-import com.ziko.webfluxdemo.dto.Response;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
-
-import java.util.List;
-import java.util.Objects;
 
 /**
  * @author : Ezekiel Eromosei

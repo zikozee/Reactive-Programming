@@ -1,11 +1,10 @@
-package com.ziko.webfluxdemo;
+package com.ziko.webfluxdemo.webclient;
 
 import com.ziko.webfluxdemo.dto.MultiplyRequestDto;
 import com.ziko.webfluxdemo.dto.Response;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
@@ -14,14 +13,14 @@ import reactor.test.StepVerifier;
  * @code @created : 20 Oct, 2023
  */
 
-public class Lecture03PostRequestTest extends BaseTest {
+public class Lecture04HeadersTest extends BaseTest {
 
     @Autowired
     private WebClient client;
 
 
     @Test
-    void postTest() {
+    void headerTest() {
 
         Mono<Response> responseFlux = this.client
                 // .mutate() // this can be used to expose Webclient builder so we can change our custom properties like baseurl, default header, default cookies etc
@@ -29,13 +28,14 @@ public class Lecture03PostRequestTest extends BaseTest {
                 .uri("reactive-math/multiply")
 //                .body(Mono.fromSupplier(() -> new MultiplyRequestDto(5, 10)), MultiplyRequestDto.class)
                 .bodyValue(new MultiplyRequestDto(5, 10))
+                .headers(h -> h.add("some_key", "some_value"))
                 .retrieve()
                 .bodyToMono(Response.class)
                 .doOnNext(System.out::println);
 
 
         StepVerifier.create(responseFlux)
-                .expectNextMatches(r -> r.output() == 50.0)
+                .expectNextCount(1)
                 .verifyComplete();
     }
 

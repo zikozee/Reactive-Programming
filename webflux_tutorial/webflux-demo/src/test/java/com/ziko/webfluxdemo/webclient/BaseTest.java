@@ -1,4 +1,4 @@
-package com.ziko.webfluxdemo;
+package com.ziko.webfluxdemo.webclient;
 
 import org.springframework.boot.test.context.SpringBootTest;
 

@@ -1,4 +1,4 @@
-package com.ziko.webfluxdemo;
+package com.ziko.webfluxdemo.webclient;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

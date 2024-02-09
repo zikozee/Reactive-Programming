@@ -1,8 +1,6 @@
-package com.ziko.webfluxdemo;
+package com.ziko.webfluxdemo.webclient;
 
-import com.ziko.webfluxdemo.dto.MultiplyRequestDto;
 import com.ziko.webfluxdemo.dto.Response;
-import com.ziko.webfluxdemo.exception.InputValidationException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.reactive.function.client.WebClient;

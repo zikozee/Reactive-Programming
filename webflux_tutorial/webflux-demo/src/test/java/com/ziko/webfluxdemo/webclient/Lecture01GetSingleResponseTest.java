@@ -1,4 +1,4 @@
-package com.ziko.webfluxdemo;
+package com.ziko.webfluxdemo.webclient;
 
 import com.ziko.webfluxdemo.dto.Response;
 import org.junit.jupiter.api.Test;
