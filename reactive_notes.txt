@@ -1,0 +1,14 @@
+Reactive Manifesto -> Reactive Systems
+				Responsive
+Elastic 							Resilent
+			   Message Driven
+			   
+			   
+Responsive
+Resilient (Staying responsive in case of failure)
+Elastic (Staying responsive in case of varying load)
+Message Driven (async & non-blocking, backpressure)
+				backpressure ::-> if the subscriber is slow at processing the data emitted from the
+					publisher, the publisher slows down production
+
+
