@@ -86,3 +86,8 @@ onComplete -  Runnable# Reactive-Programming
 - AfterConvert:	Entity object is retrieved from DB. Use this to modify Entity object after reading from DB. 
 
 ## Spring webflux file upload: https://www.vinsguru.com/spring-webflux-file-upload/
+
+## Batching
+- Buffer -this gives a list
+- Window - performs like Buffer but gives a flux
+- Group
