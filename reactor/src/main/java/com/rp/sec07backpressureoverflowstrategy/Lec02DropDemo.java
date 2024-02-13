@@ -1,9 +1,8 @@
-package com.rp.sec07;
+package com.rp.sec07backpressureoverflowstrategy;
 
 import com.rp.courseutil.Util;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
-import reactor.util.concurrent.Queues;
 
 import java.util.ArrayList;
 import java.util.List;

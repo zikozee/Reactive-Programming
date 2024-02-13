@@ -1,4 +1,4 @@
-package com.rp.sec06;
+package com.rp.sec06threadingandschedulers;
 
 import com.rp.courseutil.Util;
 import reactor.core.publisher.Flux;
@@ -9,7 +9,7 @@ import reactor.core.scheduler.Schedulers;
  * @code @created : 02 Feb, 2024
  */
 
-public class Lec04PublishOn {
+public class Lec05PubSubOnDemo {
 
     public static void main(String[] args) {
         // The closest subscribeOn to the publisher takes precedence
@@ -24,9 +24,9 @@ public class Lec04PublishOn {
                 .doOnNext(i -> printThreadName("next " + i));
 
         flux
-                .publishOn(Schedulers.boundedElastic())
-                .doOnNext(i -> printThreadName("next " + i))
                 .publishOn(Schedulers.parallel())
+                .doOnNext(i -> printThreadName("next " + i))
+                .subscribeOn(Schedulers.boundedElastic())
                 .subscribe(v -> printThreadName("sub " + v));
 
 

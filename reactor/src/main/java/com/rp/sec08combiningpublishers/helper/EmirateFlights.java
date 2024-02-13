@@ -1,4 +1,4 @@
-package com.rp.sec08.helper;
+package com.rp.sec08combiningpublishers.helper;
 
 import com.rp.courseutil.Util;
 import reactor.core.publisher.Flux;

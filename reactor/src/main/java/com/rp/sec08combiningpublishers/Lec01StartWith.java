@@ -1,11 +1,7 @@
-package com.rp.sec08;
+package com.rp.sec08combiningpublishers;
 
 import com.rp.courseutil.Util;
-import com.rp.sec08.helper.NameGenerator;
-import reactor.core.publisher.Flux;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.rp.sec08combiningpublishers.helper.NameGenerator;
 
 /**
  * @author : Ezekiel Eromosei

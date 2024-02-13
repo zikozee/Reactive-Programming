@@ -1,9 +1,9 @@
-package com.rp.sec08;
+package com.rp.sec08combiningpublishers;
 
 import com.rp.courseutil.Util;
-import com.rp.sec08.helper.AmericanFlights;
-import com.rp.sec08.helper.EmirateFlights;
-import com.rp.sec08.helper.QatarFlights;
+import com.rp.sec08combiningpublishers.helper.AmericanFlights;
+import com.rp.sec08combiningpublishers.helper.EmirateFlights;
+import com.rp.sec08combiningpublishers.helper.QatarFlights;
 import reactor.core.publisher.Flux;
 
 /**
