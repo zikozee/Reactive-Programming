@@ -91,3 +91,9 @@ onComplete -  Runnable# Reactive-Programming
 - Buffer -this gives a list
 - Window - performs like Buffer but gives a flux
 - Group
+
+# Repeat & Retry
+- say the publisher closes the stream by an onComplete(we use _repeat_) or Error (We use _retry_)
+  - now the subscribe wishes to reconnect 
+- **repeat**: Resubscribe after complete signal
+- **retry**: Resubscribe after error signal
