@@ -97,3 +97,11 @@ onComplete -  Runnable# Reactive-Programming
   - now the subscribe wishes to reconnect 
 - **repeat**: Resubscribe after complete signal
 - **retry**: Resubscribe after error signal
+
+# Sink
+- acts as both a publisher and subscriber
+    TYPE                   BEHAVIOR                   PUB:SUB
+  - One                     Mono                        1:N
+  - many - unicast          Flux                        1:1
+  - many- multicast         Flux                        1:N
+  - many - replay           Flux                        1:N (with replay of all values to late subscribers)
